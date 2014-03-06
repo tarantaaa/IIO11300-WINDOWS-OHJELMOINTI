@@ -1,4 +1,5 @@
 ﻿//Koodannut ja testannut toimivaksi 6.3.2014 Esa Salmikangas.
+//Jatkanut Tarleena Marttila 6.3.2014.
 using System;
 using System.Collections.Generic;
 using System.Linq;
