@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
+
 namespace JAMK.ICT.Data
 {
   public static class DBPlacebo

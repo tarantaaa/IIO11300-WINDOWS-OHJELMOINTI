@@ -42,5 +42,16 @@ namespace JAMK.ICT.Properties {
                 return ((string)(this["Taulu"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=eight.labranet.jamk.fi;Initial Catalog=Viini;Persist Security Info=Tr" +
+            "ue;User ID=koodari;Password=koodari13")]
+        public string ViiniConnectionString {
+            get {
+                return ((string)(this["ViiniConnectionString"]));
+            }
+        }
     }
 }
