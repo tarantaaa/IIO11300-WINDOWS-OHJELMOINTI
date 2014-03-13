@@ -24,3 +24,5 @@ D:\f7022\IIO11300-WINDOWS-OHJELMOINTI\obj\Debug\ADONET_MarkupCompile.cache
 D:\f7022\IIO11300-WINDOWS-OHJELMOINTI\obj\Debug\ADONET.g.resources
 D:\f7022\IIO11300-WINDOWS-OHJELMOINTI\obj\Debug\JAMK.ICT.Properties.Resources.resources
 D:\f7022\IIO11300-WINDOWS-OHJELMOINTI\obj\Debug\H10ADOBlanco.csproj.GenerateResource.Cache
+D:\f7022\IIO11300-WINDOWS-OHJELMOINTI\obj\Debug\AboutWindow.baml
+D:\f7022\IIO11300-WINDOWS-OHJELMOINTI\obj\Debug\AboutWindow.g.cs

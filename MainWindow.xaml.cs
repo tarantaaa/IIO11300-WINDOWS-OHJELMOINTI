@@ -22,27 +22,47 @@ namespace H10ADOBlanco
   /// </summary>
   public partial class MainWindow : Window
   {
+    string YhteysMerkkijono;
+    string TaulunNimi;
     public MainWindow()
     {
       InitializeComponent();
       IniMyStuff();
+
     }
 
     private void IniMyStuff()
     {
-      //TODO täytetään combobox asiakkaitten maitten nimillä
       //esimerkki kuinka App.Configissa oleva connectionstring luetaan
-      lbMessages.Content = JAMK.ICT.Properties.Settings.Default.Tietokanta;
+      YhteysMerkkijono = JAMK.ICT.Properties.Settings.Default.Tietokanta;
+      lbMessages.Content = YhteysMerkkijono;
+      TaulunNimi = JAMK.ICT.Properties.Settings.Default.Taulu;
+        //kaupungit comboboxiin
+      cbCountries.ItemsSource = JAMK.ICT.Data.DBPlacebo.GetCitiesOfCustomersFromSQLServer(YhteysMerkkijono, TaulunNimi).DefaultView;
+      cbCountries.DisplayMemberPath = "city";
     }
 
     private void btnGet3_Click(object sender, RoutedEventArgs e)
     {
-      //TODO
+        //dgCustomers.ItemsSource = JAMK.ICT.Data.DBPlacebo.GetTestCustomers().DefaultView;
+        //ItemsSource vaatii dataviewin, DataContextille kelpaa DataTable
+        dgCustomers.DataContext = JAMK.ICT.Data.DBPlacebo.GetTestCustomers();
     }
 
     private void btnGetAll_Click(object sender, RoutedEventArgs e)
     {
-      //TODO
+        try
+        {
+            string messu = "";
+            dgCustomers.DataContext = JAMK.ICT.Data.DBPlacebo.GetAllCustomersFromSQLServer(YhteysMerkkijono, TaulunNimi, out messu);
+            lbMessages.Content = messu;
+        }
+        catch (Exception ex)
+        {
+
+            lbMessages.Content = ex.Message;
+        }
+
     }
 
     private void btnGetFrom_Click(object sender, RoutedEventArgs e)
