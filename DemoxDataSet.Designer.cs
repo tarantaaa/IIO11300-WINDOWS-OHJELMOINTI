@@ -702,11 +702,11 @@ namespace JAMK.ICT {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string City {
                 get {
-                    try {
-                        return ((string)(this[this.tablecustomer.CityColumn]));
+                    if (this.IsCityNull()) {
+                        return null;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'City\' in table \'customer\' is DBNull.", e);
+                    else {
+                        return ((string)(this[this.tablecustomer.CityColumn]));
                     }
                 }
                 set {

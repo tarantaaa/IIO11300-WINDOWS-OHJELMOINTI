@@ -1,6 +1,7 @@
 ﻿//Koodannut ja testannut toimivaksi 6.3.2014 Esa Salmikangas.
 //Jatkanut Tarleena Marttila 6.3.2014.
 //Jatkanut Tarleena Marttila 13.3.2014
+//Jatkanut Tarleena Marttila 20.3.2014
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,6 +31,7 @@ namespace H10ADOBlanco
     //DataTable dt;
     //DataView dv;
     DemoxDataSet ds;
+    DataView dv;
     JAMK.ICT.DemoxDataSetTableAdapters.customerTableAdapter myTA;
     public MainWindowV3()
     {
@@ -43,10 +45,35 @@ namespace H10ADOBlanco
         ds = new DemoxDataSet();
         myTA = new JAMK.ICT.DemoxDataSetTableAdapters.customerTableAdapter();
         myTA.Fill(ds.customer);
+        dv = ds.customer.DefaultView;
         dgCustomers.DataContext =  ds.customer.DefaultView;
+        FillCombo();
+    }
+    private void FillCombo()
+    {
+        //täytetään comboboxi LINQn avulla
+        var kaupungit = (from k in ds.customer 
+                        where k.City != null
+                        select k.City).Distinct();
+        cbCities.Items.Add("Kaikki");
+        foreach (var k in kaupungit)
+        {
+            cbCities.Items.Add(k);
+        }
     }
     private void cbCities_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        string kaupunki = cbCities.SelectedValue.ToString();
+        if (kaupunki == "Kaikki")
+        {
+            dv.RowFilter = "";
+            lbMessages.Content = string.Format("Asiakkaita on {0} yhteensä.", dv.Count);
+        }
+        else
+        {
+            dv.RowFilter = string.Format("city LIKE '{0}'", kaupunki);
+            lbMessages.Content = string.Format("Valitussa kaupungissa on {0} on {1} asiakasta.", kaupunki, dv.Count);
+        }
 
     }
 

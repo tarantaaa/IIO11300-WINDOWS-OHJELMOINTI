@@ -53,12 +53,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
+    <Reference Include="EntityFramework">
+      <HintPath>packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -78,7 +85,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="customer.cs">
+      <DependentUpon>Viini.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Viini.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Viini.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Viini.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Viini.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Viini.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Viini.edmx</DependentUpon>
+    </Compile>
     <Page Include="AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EFWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -109,6 +138,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DemoxDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EFWindow.xaml.cs">
+      <DependentUpon>EFWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindowV3.xaml.cs">
       <DependentUpon>MainWindowV3.xaml</DependentUpon>
@@ -151,11 +183,29 @@
     <None Include="DemoxDataSet.xss">
       <DependentUpon>DemoxDataSet.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <EntityDeploy Include="Viini.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Viini.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Viini.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Viini.edmx</DependentUpon>
+      <LastGenOutput>Viini.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Viini.edmx.diagram">
+      <DependentUpon>Viini.edmx</DependentUpon>
+    </None>
+    <None Include="Viini.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Viini.edmx</DependentUpon>
+      <LastGenOutput>Viini.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -179,6 +229,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
